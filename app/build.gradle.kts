@@ -1,12 +1,16 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kspPlugin)
+    alias(libs.plugins.hiltPlugin)
 }
 
 android {
     namespace = "com.sharath070.wave"
     compileSdk = 34
+    android.buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "com.sharath070.wave"
@@ -19,14 +23,78 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+
+        buildConfigField(
+            "String", "baseUrl", "\"${properties.getProperty("baseUrl")}\""
+        )
+        buildConfigField(
+            "String", "apiStr", "\"${properties.getProperty("apiStr")}\""
+        )
+        buildConfigField(
+            "String", "apiStrV4", "\"${properties.getProperty("apiStrV4")}\""
+        )
+        buildConfigField(
+            "String", "homeData", "\"${properties.getProperty("homeData")}\""
+        )
+        buildConfigField(
+            "String", "topSearches", "\"${properties.getProperty("topSearches")}\""
+        )
+        buildConfigField(
+            "String", "fromToken", "\"${properties.getProperty("fromToken")}\""
+        )
+        buildConfigField(
+            "String", "featuredRadio", "\"${properties.getProperty("featuredRadio")}\""
+        )
+        buildConfigField(
+            "String", "artistRadio", "\"${properties.getProperty("artistRadio")}\""
+        )
+        buildConfigField(
+            "String", "entityRadio", "\"${properties.getProperty("entityRadio")}\""
+        )
+        buildConfigField(
+            "String", "radioSongs", "\"${properties.getProperty("radioSongs")}\""
+        )
+        buildConfigField(
+            "String", "songDetails", "\"${properties.getProperty("songDetails")}\""
+        )
+        buildConfigField(
+            "String", "playlistDetails", "\"${properties.getProperty("playlistDetails")}\""
+        )
+        buildConfigField(
+            "String", "albumDetails", "\"${properties.getProperty("albumDetails")}\""
+        )
+        buildConfigField(
+            "String", "getResults", "\"${properties.getProperty("getResults")}\""
+        )
+        buildConfigField(
+            "String", "albumResults", "\"${properties.getProperty("albumResults")}\""
+        )
+        buildConfigField(
+            "String", "artistResults", "\"${properties.getProperty("artistResults")}\""
+        )
+        buildConfigField(
+            "String", "playlistResults", "\"${properties.getProperty("playlistResults")}\""
+        )
+        buildConfigField(
+            "String", "getReco", "\"${properties.getProperty("getReco")}\""
+        )
+        buildConfigField(
+            "String", "getAlbumReco", "\"${properties.getProperty("getAlbumReco")}\""
+        )
+        buildConfigField(
+            "String", "artistOtherTopSongs", "\"${properties.getProperty("artistOtherTopSongs")}\""
+        )
+
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -74,6 +142,9 @@ dependencies {
     //Lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
+
+    //Coroutines
+    implementation(libs.kotlinx.coroutines.android)
 
     //Retrofit
     implementation(libs.retrofit)

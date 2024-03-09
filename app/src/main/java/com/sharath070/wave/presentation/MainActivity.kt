@@ -1,30 +1,37 @@
 package com.sharath070.wave.presentation
 
-import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.material3.Text
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.lifecycleScope
+import com.sharath070.wave.data.remote.MusicApi
+import com.sharath070.wave.domain.repository.HomeScreenRepository
+import com.sharath070.wave.domain.useCase.homePageUseCase.GetHomePageData
 import com.sharath070.wave.presentation.navigation.NavigationComponent
-import java.time.Duration
-import java.time.Instant
-import kotlin.time.DurationUnit
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         val viewModel: SplashViewModel by viewModels()
 
-        super.onCreate(savedInstanceState)
         installSplashScreen().apply {
             setKeepOnScreenCondition {
                 viewModel.splashAnimating
             }
         }
+
         setContent {
             NavigationComponent()
         }
