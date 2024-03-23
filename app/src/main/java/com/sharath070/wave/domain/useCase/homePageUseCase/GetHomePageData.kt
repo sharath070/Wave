@@ -2,7 +2,7 @@ package com.sharath070.wave.domain.useCase.homePageUseCase
 
 import android.util.Log
 import com.sharath070.wave.common.Resource
-import com.sharath070.wave.domain.models.homeModels.GenericHomeModel
+import com.sharath070.wave.domain.models.home.GenericHomeModel
 import com.sharath070.wave.domain.repository.HomeScreenRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,7 +18,6 @@ class GetHomePageData @Inject constructor(
         flow {
             emit(Resource.Loading())
             try {
-                Log.d("formattedDataMap", "entered.")
                 val formattedDataMap = mutableMapOf<String, List<GenericHomeModel>>()
                 val data = homeRepo.getHomeScreenData(languages)
                 val modules = data["modules"] as Map<*, *>

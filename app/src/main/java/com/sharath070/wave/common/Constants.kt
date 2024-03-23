@@ -26,4 +26,18 @@ object Constants {
     const val GET_ALBUM_RECOMMENDATION = BuildConfig.getAlbumReco
     const val ARTIST_OTHER_TOP_SONGS = BuildConfig.artistOtherTopSongs
 
+    //Decode
+    const val KEY = BuildConfig.key
+    const val ALGORITHM = BuildConfig.algo
+    private const val BLOCK = BuildConfig.block
+    private const val PADDING = BuildConfig.padding
+    const val TRANSFORMATION = "$ALGORITHM/$BLOCK/$PADDING"
+
+    //Notifications
+    const val PLAYER_CHANNEL_ID = "player_channel_id"
+    const val NOTIFICATION_ID = 101
+
+    //Player view model
+    const val SAVED_MEDIA_ITEMS = "saved_songs_list"
+
 }

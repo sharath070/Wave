@@ -1,0 +1,80 @@
+{
+  ConstraintSets: {
+    start: {
+      pic: {
+        width: 500,
+        height: 500,
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['parent', 'top'],
+        bottom: ['parent', 'bottom']
+      }
+    },
+    end: {
+      pic: {
+        width: 250,
+        height: 250,
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['parent', 'top', 13],
+        bottom: ['parent', 'bottom', 13]
+      },
+    },
+  },
+  Transitions: {
+    default: {
+      from: 'start',
+      to: 'end',
+      pathMotionArc: 'startHorizontal',
+      KeyFrames: {
+        KeyAttributes: [
+          {
+            target: ['pic'],
+            frames: [0, 100]
+          }
+        ]
+      }
+    }
+  }
+}
+
+/*
+container_box: {
+  width: 'spread',
+  height: 'spread',
+  top: ['pic', 'top', 0],
+  bottom: ['pic', 'bottom', 0],
+  start: ['pic', 'start', 0],
+  end: ['pic', 'end', 0],
+},
+back_icon: {
+  width: 30,
+  height: 30,
+  top: ['container_box', 'top', 16],
+  start: ['container_box', 'start', 8]
+},
+text_box: {
+  width: 'spread',
+  start: ['container_box', 'start', 0],
+  end: ['container_box', 'end', 0],
+  bottom: ['container_box', 'bottom', 0],
+},
+title_text: {
+  width: 'spread',
+  start: ['text_box', 'start', 0],
+  end: ['text_box', 'end', 0],
+  top: ['text_box', 'top', 0],
+},
+subtitle_text: {
+  width: 'spread',
+  start: ['text_box', 'start', 0],
+  end: ['text_box', 'end', 0],
+  top: ['title_text', 'bottom', 0],
+  bottom: ['text_box', 'bottom', 0],
+},
+action_row: {
+  width: 'spread',
+  start: ['parent', 'start', 0],
+  end: ['parent', 'end', 0],
+  top: ['container_box', 'bottom', 0],
+}*/

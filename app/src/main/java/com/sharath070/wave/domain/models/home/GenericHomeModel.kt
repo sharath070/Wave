@@ -1,7 +1,6 @@
-package com.sharath070.wave.domain.models.homeModels
+package com.sharath070.wave.domain.models.home
 
 import androidx.compose.runtime.Stable
-import java.text.FieldPosition
 
 @Stable
 data class GenericHomeModel(

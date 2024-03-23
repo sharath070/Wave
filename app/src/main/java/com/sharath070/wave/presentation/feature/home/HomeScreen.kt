@@ -4,10 +4,14 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -20,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.sharath070.wave.domain.models.homeModels.GenericHomeModel
+import com.sharath070.wave.domain.models.home.GenericHomeModel
 import com.sharath070.wave.presentation.feature.home.components.HomeAlbumCardItem
 import com.sharath070.wave.presentation.ui.theme.bg
 import com.sharath070.wave.presentation.ui.theme.bold
@@ -29,6 +33,7 @@ import com.sharath070.wave.presentation.ui.theme.text
 @Composable
 fun HomeScreen(
     uiStates: HomeUiStates,
+    paddingValues: PaddingValues,
     onAlbumClicked: (String, String, String) -> Unit
 ) {
     if (uiStates.loading) {
@@ -46,6 +51,8 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(bg)
+                .navigationBarsPadding()
+                .statusBarsPadding()
         ) {
             items(categoryList) { category ->
                 val data = uiStates.data[category]
@@ -56,6 +63,9 @@ fun HomeScreen(
                         onAlbumClicked(id, type, url)
                     }
                 )
+            }
+            item {
+                Spacer(modifier = Modifier.height(paddingValues.calculateBottomPadding()))
             }
         }
     }
@@ -96,6 +106,7 @@ fun CategoryAlbumRow(
                         }
                     )
                 }
+                item { Spacer(modifier = Modifier.width(10.dp)) }
             }
         }
     }

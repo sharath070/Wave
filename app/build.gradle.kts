@@ -87,7 +87,18 @@ android {
         buildConfigField(
             "String", "artistOtherTopSongs", "\"${properties.getProperty("artistOtherTopSongs")}\""
         )
-
+        buildConfigField(
+            "String", "key", "\"${properties.getProperty("key")}\""
+        )
+        buildConfigField(
+            "String", "algo", "\"${properties.getProperty("algo")}\""
+        )
+        buildConfigField(
+            "String", "block", "\"${properties.getProperty("block")}\""
+        )
+        buildConfigField(
+            "String", "padding", "\"${properties.getProperty("padding")}\""
+        )
     }
 
     buildTypes {
@@ -128,6 +139,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.media3.session)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -135,6 +147,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Constraint layout
+    implementation(libs.androidx.constraintlayout.compose)
 
     //Splash Api
     implementation(libs.androidx.core.splashscreen)
@@ -145,6 +160,8 @@ dependencies {
 
     //Coroutines
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.guava)
+    implementation(libs.kotlinx.coroutines.guava)
 
     //Retrofit
     implementation(libs.retrofit)
@@ -158,6 +175,17 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
+    // Media Player
+    implementation(libs.androidx.media3.datasource.okhttp)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.session)
+    implementation(libs.androidx.legacy.support.v4)
+
     //Coil
     implementation(libs.coil.compose)
+
+    //Glide
+    implementation(libs.glide)
+
 }

@@ -12,4 +12,12 @@ class HomeScreenRepositoryImpl @Inject constructor(
     override suspend fun getHomeScreenData(language: String): Map<String, Any> {
         return api.getHomePageData(language)
     }
+
+    override suspend fun getAlbumSongsList(albumId: String): Map<String, Any> {
+        return api.getAlbumSongsList(albumId)
+    }
+
+    override suspend fun getPlaylistSongs(playlistId: String): Map<String, Any> {
+        return api.getPlaylistSongs(playlistId)
+    }
 }

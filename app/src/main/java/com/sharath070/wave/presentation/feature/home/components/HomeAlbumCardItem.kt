@@ -1,9 +1,11 @@
 package com.sharath070.wave.presentation.feature.home.components
 
+import android.view.animation.Transformation
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -15,6 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.FilterQuality
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -22,7 +26,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.sharath070.wave.domain.models.homeModels.GenericHomeModel
+import com.sharath070.wave.common.utils.highImageQuality
+import com.sharath070.wave.common.utils.parse
+import com.sharath070.wave.domain.models.home.GenericHomeModel
 import com.sharath070.wave.presentation.ui.theme.medium
 import com.sharath070.wave.presentation.ui.theme.regular
 import com.sharath070.wave.presentation.ui.theme.text
@@ -51,11 +57,12 @@ fun HomeAlbumCardItem(
         Column {
             AlbumImage(category, data.image)
             Text(
-                text = data.title,
+                text = data.title.parse(),
                 fontSize = 16.sp,
                 color = text,
                 fontFamily = medium,
                 maxLines = 1,
+                lineHeight = 16.sp,
                 textAlign = TextAlign.Center,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.fillMaxWidth()
@@ -63,11 +70,12 @@ fun HomeAlbumCardItem(
             )
             if (data.subtitle != null) {
                 Text(
-                    text = data.subtitle,
+                    text = data.subtitle.parse(),
                     fontSize = 12.sp,
                     color = textDisabled,
                     fontFamily = regular,
                     maxLines = 1,
+                    lineHeight = 12.sp,
                     textAlign = TextAlign.Center,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.fillMaxWidth()
@@ -84,10 +92,11 @@ fun AlbumImage(category: String, image: String) {
     if (category == "Recommended Artist Stations") {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(image)
+                .data(image.highImageQuality())
                 .crossfade(true)
                 .build(),
             contentDescription = null,
+            filterQuality = FilterQuality.None,
             modifier = Modifier
                 .aspectRatio(1f)
                 .padding(10.dp)
@@ -96,10 +105,11 @@ fun AlbumImage(category: String, image: String) {
     } else {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(image)
+                .data(image.highImageQuality())
                 .crossfade(true)
                 .build(),
             contentDescription = null,
+            contentScale = ContentScale.Fit,
             modifier = Modifier
                 .aspectRatio(1f)
                 .clip(RoundedCornerShape(16.dp))

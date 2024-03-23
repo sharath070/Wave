@@ -1,22 +1,18 @@
 package com.sharath070.wave.presentation
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.material3.Text
+import androidx.annotation.OptIn
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.lifecycleScope
-import com.sharath070.wave.data.remote.MusicApi
-import com.sharath070.wave.domain.repository.HomeScreenRepository
-import com.sharath070.wave.domain.useCase.homePageUseCase.GetHomePageData
-import com.sharath070.wave.presentation.navigation.NavigationComponent
+import androidx.core.view.WindowCompat
+import androidx.media3.common.util.UnstableApi
+import com.sharath070.wave.player.service.PlayerService
+import com.sharath070.wave.presentation.navigation.rootNavigation.RootNavigationComponent
+import com.sharath070.wave.presentation.ui.theme.WaveTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -31,9 +27,17 @@ class MainActivity : ComponentActivity() {
                 viewModel.splashAnimating
             }
         }
-
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            NavigationComponent()
+            WaveTheme(dynamicColor = false) {
+                RootNavigationComponent()
+            }
         }
     }
+
+    override fun onDestroy() {
+        stopService(Intent(this, PlayerService::class.java))
+        super.onDestroy()
+    }
+
 }
