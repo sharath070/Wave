@@ -36,7 +36,10 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onDestroy() {
-        stopService(Intent(this, PlayerService::class.java))
+        Intent(applicationContext, PlayerService::class.java).also {
+            it.action = PlayerService.Actions.STOP.name
+            startService(it)
+        }
         super.onDestroy()
     }
 

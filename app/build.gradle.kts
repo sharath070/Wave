@@ -160,8 +160,6 @@ dependencies {
 
     //Coroutines
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.guava)
-    implementation(libs.kotlinx.coroutines.guava)
 
     //Retrofit
     implementation(libs.retrofit)

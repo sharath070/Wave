@@ -1,36 +1,26 @@
 package com.sharath070.wave.domain.player
 
-import androidx.media3.common.MediaItem
 import com.sharath070.wave.domain.models.player.Music
 
 interface PlaybackController {
+
     var mediaControllerCallback: (
         (playerState: PlayerState,
-         currentMediaItem: MediaItem?,
+         currentMediaItemIndex: Int?,
          currentPosition: Long,
          totalDuration: Long,
-         isShuffleEnabled: Boolean) -> Unit
+         isShuffleEnabled: Boolean,
+         repeatModeState: RepeatModeState) -> Unit
     )?
 
-    fun addMediaItemsList(musics: List<Music>)
-
-    fun addMediaItem(music: Music)
-
-    fun playAtIndex(mediaItemIndex: Int)
-
+    fun addMusicList(list: List<Music>)
+    fun addMusicItem(music: Music)
+    fun playSelectedMusic(songIndex: Int)
     fun playOrPause()
-
+    fun seekToNext()
+    fun seekToPrevious()
     fun seekTo(position: Long)
-
-    fun skipNext()
-
-    fun skipPrevious()
-
-    fun toggleShuffleMode(isEnabled: Boolean)
-
+    fun toggleShuffleMode()
     fun toggleRepeatMode()
-
-    fun getCurrentPosition(): Long
-
     fun destroy()
 }

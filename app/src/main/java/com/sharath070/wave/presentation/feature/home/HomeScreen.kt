@@ -24,8 +24,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.sharath070.wave.domain.models.home.GenericHomeModel
 import com.sharath070.wave.presentation.feature.home.components.HomeAlbumCardItem
+import com.sharath070.wave.presentation.navigation.appNavigation.AppScreens
 import com.sharath070.wave.presentation.ui.theme.bg
 import com.sharath070.wave.presentation.ui.theme.bold
 import com.sharath070.wave.presentation.ui.theme.text
@@ -33,8 +35,9 @@ import com.sharath070.wave.presentation.ui.theme.text
 @Composable
 fun HomeScreen(
     uiStates: HomeUiStates,
+    uiEvents: (HomeUiEvents) -> Unit,
     paddingValues: PaddingValues,
-    onAlbumClicked: (String, String, String) -> Unit
+    navController: NavController
 ) {
     if (uiStates.loading) {
         Box(
@@ -60,7 +63,13 @@ fun HomeScreen(
                     category = category,
                     data = data,
                     onAlbumClicked = { id: String, type: String, url: String ->
-                        onAlbumClicked(id, type, url)
+                        if (type == "album") {
+                            uiEvents(HomeUiEvents.GetAlbumSongs(id))
+                            navController.navigate(AppScreens.MusicApiSongsListScreen.route)
+                        } else if (type == "playlist") {
+                            uiEvents(HomeUiEvents.GetPlaylistSongs(id))
+                            navController.navigate(AppScreens.MusicApiSongsListScreen.route)
+                        }
                     }
                 )
             }

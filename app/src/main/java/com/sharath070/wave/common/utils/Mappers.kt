@@ -7,11 +7,11 @@ fun MusicApiSongDetails.toMusic(): Music {
     return Music(
         id = id,
         title = title,
-        subtitle = subtitle!!,
+        subtitle = subtitle ?: "",
         image = image,
-        url = songUrl!!,
+        url = songUrl ?: "",
         hasLyrics = hasLyrics,
-        duration = duration!!,
-        kbps320 = kbps320!!,
+        duration = duration ?: 0L,
+        kbps320 = kbps320 ?: false,
     )
 }

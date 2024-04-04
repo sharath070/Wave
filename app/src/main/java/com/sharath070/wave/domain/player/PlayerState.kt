@@ -6,3 +6,9 @@ enum class PlayerState {
     STOPPED,
     BUFFERING
 }
+
+enum class RepeatModeState {
+    REPEAT_OFF,
+    REPEAT_ALL,
+    REPEAT_ONE,
+}
