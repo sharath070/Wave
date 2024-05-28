@@ -1,10 +1,11 @@
 package com.sharath070.wave.domain.useCase.getAlbumSongsListUseCase
 
 import com.sharath070.wave.common.Resource
+import com.sharath070.wave.common.utils.highImageQuality
 import com.sharath070.wave.common.utils.parse
-import com.sharath070.wave.domain.models.musicApiSongListings.MusicApiSongsListing
-import com.sharath070.wave.domain.models.musicApiSongListings.MusicApiSongDetails
-import com.sharath070.wave.domain.repository.HomeScreenRepository
+import com.sharath070.wave.domain.models.songListings.SongsListing
+import com.sharath070.wave.domain.models.songListings.SongDetails
+import com.sharath070.wave.domain.repository.HomeRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -12,10 +13,10 @@ import java.io.IOException
 import javax.inject.Inject
 
 class GetAlbumSongsList @Inject constructor(
-    private val homeRepo: HomeScreenRepository
+    private val homeRepo: HomeRepository
 ) {
 
-    operator fun invoke(albumId: String): Flow<Resource<MusicApiSongsListing>> =
+    operator fun invoke(albumId: String): Flow<Resource<SongsListing>> =
         flow {
             emit(Resource.Loading())
             try {
@@ -30,7 +31,7 @@ class GetAlbumSongsList @Inject constructor(
                 val listType = data["list_type"] as? String
 
                 val list = data["list"] as? List<*>
-                val songList = mutableListOf<MusicApiSongDetails>()
+                val songList = mutableListOf<SongDetails>()
                 list?.forEach { item ->
                     if (item is Map<*, *>) {
                         val songId = item["id"] as? String
@@ -46,7 +47,7 @@ class GetAlbumSongsList @Inject constructor(
                             && songUrl != null && songImage != null && type != null
                         ) {
                             songList.add(
-                                MusicApiSongDetails(
+                                SongDetails(
                                     id = songId,
                                     title = songTitle.parse(),
                                     subtitle = songSubtitle,
@@ -64,13 +65,13 @@ class GetAlbumSongsList @Inject constructor(
                     && url != null && image != null &&
                     listCount != null && listType != null
                 ) {
-                    val formattedData = MusicApiSongsListing(
+                    val formattedData = SongsListing(
                         id = id,
                         title = title,
                         subtitle = subtitle,
                         type = currentListType,
                         url = url,
-                        image = image,
+                        image = image.highImageQuality(),
                         listCount = listCount,
                         listType = listType,
                         songList = songList

@@ -7,9 +7,9 @@ object Constants {
     //Api
     const val BASE_URL = BuildConfig.baseUrl
     const val API_STRING = BuildConfig.apiStr
-    const val API_STRING_V4 = BuildConfig.apiStrV4
     const val HOME_DATA = BuildConfig.homeData
     const val TOP_SEARCHES = BuildConfig.topSearches
+    const val SEARCH_RESULTS = BuildConfig.searchResults
     const val FROM_TOKEN = BuildConfig.fromToken
     const val FEATURED_RADIO = BuildConfig.featuredRadio
     const val ARTIST_RADIO = BuildConfig.artistRadio

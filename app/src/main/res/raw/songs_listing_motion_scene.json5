@@ -1,80 +1,175 @@
 {
   ConstraintSets: {
     start: {
-      pic: {
-        width: 500,
-        height: 500,
-        start: ['parent', 'start'],
-        end: ['parent', 'end'],
-        top: ['parent', 'top'],
-        bottom: ['parent', 'bottom']
+      header_color: {
+        width: 'spread',
+        height: 'spread',
+        top: ['parent', 'top', 0],
+        bottom: ['title_and_subtitle', 'bottom', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0]
+      },
+      status_bar_padding: {
+        width: 'spread',
+        top: ['parent', 'top', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        custom: {
+          bg: '#00000000',
+          top_shade: '#00000000',
+          bottom_shade: '#00000000'
+        }
+      },
+      top_bar: {
+        width: 'spread',
+        height: 55,
+        top: ['status_bar_padding', 'bottom', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+      },
+      back_btn: {
+        height: 30,
+        width: 30,
+        top: ['top_bar', 'top', 0],
+        bottom: ['top_bar', 'bottom', 0],
+        start: ['top_bar', 'start', 7],
+      },
+      top_bar_title: {
+        width: 'spread',
+        top: ['top_bar', 'top', 0],
+        bottom: ['top_bar', 'bottom', 0],
+        start: ['back_btn', 'end', 7],
+        end: ['search_btn', 'start', 7],
+        visibility: 'invisible'
+      },
+      search_btn: {
+        height: 30,
+        width: 30,
+        top: ['top_bar', 'top', 0],
+        bottom: ['top_bar', 'bottom', 0],
+        end: ['top_bar', 'end', 7]
+      },
+      image: {
+        width: 220,
+        height: 220,
+        top: ['back_btn', 'top', 3],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+      },
+      title_and_subtitle: {
+        width: 'spread',
+        top: ['image', 'bottom', 16],
+        start: ['parent', 'start', 16],
+        end: ['parent', 'end', 16],
+      },
+      play_all: {
+        top: ['title_and_subtitle', 'bottom', 16],
+        start: ['action_row', 'end', 0],
+        end: ['parent', 'end', 22],
+      },
+      action_row: {
+        width: 'spread',
+        top: ['play_all', 'top', 0],
+        bottom: ['play_all', 'bottom', 0],
+        start: ['parent', 'start', 22],
+        end: ['play_all', 'start', 0],
+      },
+      content: {
+        width: 'spread',
+        height: 'spread',
+        top: ['play_all', 'bottom', 16],
+        bottom: ['parent', 'bottom', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
       }
     },
     end: {
-      pic: {
-        width: 250,
-        height: 250,
-        start: ['parent', 'start'],
-        end: ['parent', 'end'],
-        top: ['parent', 'top', 13],
-        bottom: ['parent', 'bottom', 13]
+      header_color: {
+        width: 'spread',
+        height: 0,
+        top: ['parent', 'top', 0],
+        bottom: ['title_and_subtitle', 'bottom', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0]
       },
-    },
-  },
-  Transitions: {
-    default: {
-      from: 'start',
-      to: 'end',
-      pathMotionArc: 'startHorizontal',
-      KeyFrames: {
-        KeyAttributes: [
-          {
-            target: ['pic'],
-            frames: [0, 100]
-          }
-        ]
+      status_bar_padding: {
+        width: 'spread',
+        top: ['parent', 'top', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        custom: {
+          bg: '#00000000'
+        }
+      },
+      top_bar: {
+        width: 'spread',
+        height: 55,
+        top: ['status_bar_padding', 'bottom', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        custom: {
+          bg: '#00000000',
+          top_shade: '#00000000',
+          bottom_shade: '#00000000'
+        }
+      },
+      back_btn: {
+        height: 30,
+        width: 30,
+        top: ['top_bar', 'top', 0],
+        bottom: ['top_bar', 'bottom', 0],
+        start: ['top_bar', 'start', 7],
+      },
+      top_bar_title: {
+        width: 'spread',
+        top: ['top_bar', 'top', 0],
+        bottom: ['top_bar', 'bottom', 0],
+        start: ['back_btn', 'end', 7],
+        end: ['search_btn', 'start', 7],
+      },
+      search_btn: {
+        height: 30,
+        width: 30,
+        top: ['top_bar', 'top', 0],
+        bottom: ['top_bar', 'bottom', 0],
+        end: ['top_bar', 'end', 7],
+        visibility: 'invisible',
+      },
+      image: {
+        width: 220,
+        height: 0,
+        top: ['back_btn', 'top', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+      },
+      title_and_subtitle: {
+        width: 'spread',
+        height: 0,
+        top: ['image', 'bottom', 0],
+        start: ['parent', 'start', 16],
+        end: ['parent', 'end', 16],
+      },
+      play_all: {
+        top: ['top_bar', 'bottom', 0],
+        bottom: ['top_bar', 'bottom', 0],
+        end: ['parent', 'end', 22],
+      },
+      action_row: {
+        width: 'spread',
+        height: 0,
+        top: ['play_all', 'top', 0],
+        bottom: ['play_all', 'bottom', 0],
+        start: ['parent', 'start', 22],
+        end: ['play_all', 'start', 0],
+      },
+      content: {
+        width: 'spread',
+        height: 'spread',
+        top: ['top_bar', 'bottom', 6],
+        bottom: ['parent', 'bottom', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
       }
     }
   }
 }
-
-/*
-container_box: {
-  width: 'spread',
-  height: 'spread',
-  top: ['pic', 'top', 0],
-  bottom: ['pic', 'bottom', 0],
-  start: ['pic', 'start', 0],
-  end: ['pic', 'end', 0],
-},
-back_icon: {
-  width: 30,
-  height: 30,
-  top: ['container_box', 'top', 16],
-  start: ['container_box', 'start', 8]
-},
-text_box: {
-  width: 'spread',
-  start: ['container_box', 'start', 0],
-  end: ['container_box', 'end', 0],
-  bottom: ['container_box', 'bottom', 0],
-},
-title_text: {
-  width: 'spread',
-  start: ['text_box', 'start', 0],
-  end: ['text_box', 'end', 0],
-  top: ['text_box', 'top', 0],
-},
-subtitle_text: {
-  width: 'spread',
-  start: ['text_box', 'start', 0],
-  end: ['text_box', 'end', 0],
-  top: ['title_text', 'bottom', 0],
-  bottom: ['text_box', 'bottom', 0],
-},
-action_row: {
-  width: 'spread',
-  start: ['parent', 'start', 0],
-  end: ['parent', 'end', 0],
-  top: ['container_box', 'bottom', 0],
-}*/

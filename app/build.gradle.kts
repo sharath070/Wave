@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kspPlugin)
     alias(libs.plugins.hiltPlugin)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -14,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "com.sharath070.wave"
-        minSdk = 24
+        minSdk = 25
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -31,16 +32,16 @@ android {
             "String", "baseUrl", "\"${properties.getProperty("baseUrl")}\""
         )
         buildConfigField(
-            "String", "apiStr", "\"${properties.getProperty("apiStr")}\""
-        )
-        buildConfigField(
-            "String", "apiStrV4", "\"${properties.getProperty("apiStrV4")}\""
+            "String", "apiStr", "\"${properties.getProperty("apiStrV4")}\""
         )
         buildConfigField(
             "String", "homeData", "\"${properties.getProperty("homeData")}\""
         )
         buildConfigField(
             "String", "topSearches", "\"${properties.getProperty("topSearches")}\""
+        )
+        buildConfigField(
+            "String", "searchResults", "\"${properties.getProperty("searchResults")}\""
         )
         buildConfigField(
             "String", "fromToken", "\"${properties.getProperty("fromToken")}\""
@@ -140,6 +141,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.media3.session)
+    implementation(libs.androidx.compose.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -167,6 +169,7 @@ dependencies {
 
     //Navigation
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 
     //Hilt
     implementation(libs.hilt.android)
@@ -185,5 +188,8 @@ dependencies {
 
     //Glide
     implementation(libs.glide)
+
+    //Pallete api
+    implementation(libs.androidx.palette)
 
 }

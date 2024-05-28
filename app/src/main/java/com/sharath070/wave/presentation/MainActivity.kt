@@ -5,10 +5,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.annotation.OptIn
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.media3.common.util.UnstableApi
 import com.sharath070.wave.player.service.PlayerService
 import com.sharath070.wave.presentation.navigation.rootNavigation.RootNavigationComponent
 import com.sharath070.wave.presentation.ui.theme.WaveTheme

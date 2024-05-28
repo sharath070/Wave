@@ -28,22 +28,4 @@ object NetworkModule {
         .create(MusicApi::class.java)
     }
 
-    @Singleton
-    @Provides
-    fun provideHttpClient(): OkHttpClient {
-        val interceptor = Interceptor {
-            val request = it.request()
-                .newBuilder()
-                .build()
-
-            it.proceed(request)
-        }
-
-        return OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
-            .build()
-    }
-
 }

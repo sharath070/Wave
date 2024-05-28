@@ -6,5 +6,4 @@ sealed class RootScreens(val route: String) {
 }
 
 sealed class RootNavGraphs(val route: String) {
-    data object Base: RootNavGraphs(route = "base_graph")
 }

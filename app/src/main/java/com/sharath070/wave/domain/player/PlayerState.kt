@@ -1,6 +1,7 @@
 package com.sharath070.wave.domain.player
 
 enum class PlayerState {
+    IDLE,
     PLAYING,
     PAUSED,
     STOPPED,

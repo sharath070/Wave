@@ -1,10 +1,20 @@
 package com.sharath070.wave.presentation.navigation.appNavigation
 
-sealed class AppScreens(val route: String) {
-    data object HomeScreen: AppScreens(route = "home_screen")
-    data object SearchScreen: AppScreens(route = "search_screen")
-    data object LibraryScreen: AppScreens(route = "library_screen")
-    data object MusicApiSongsListScreen: AppScreens(route = "music_api_songs_list_screen")
+import kotlinx.serialization.Serializable
+
+sealed class AppScreens() {
+
+    @Serializable
+    data object HomeScreen: AppScreens()
+
+    @Serializable
+    data class SongsListScreen(
+        val id: String,
+        val type: String
+    ): AppScreens()
+
+    @Serializable
+    data object SearchScreen: AppScreens()
 }
 
 sealed class AppNavGraphs(val route: String) {

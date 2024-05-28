@@ -4,12 +4,9 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
@@ -35,8 +32,6 @@ import com.sharath070.wave.presentation.ui.theme.text
 @Composable
 fun HomeScreen(
     uiStates: HomeUiStates,
-    uiEvents: (HomeUiEvents) -> Unit,
-    paddingValues: PaddingValues,
     navController: NavController
 ) {
     if (uiStates.loading) {
@@ -54,7 +49,6 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(bg)
-                .navigationBarsPadding()
                 .statusBarsPadding()
         ) {
             items(categoryList) { category ->
@@ -63,18 +57,16 @@ fun HomeScreen(
                     category = category,
                     data = data,
                     onAlbumClicked = { id: String, type: String, url: String ->
-                        if (type == "album") {
-                            uiEvents(HomeUiEvents.GetAlbumSongs(id))
-                            navController.navigate(AppScreens.MusicApiSongsListScreen.route)
-                        } else if (type == "playlist") {
-                            uiEvents(HomeUiEvents.GetPlaylistSongs(id))
-                            navController.navigate(AppScreens.MusicApiSongsListScreen.route)
+                        if (type == "album" || type == "playlist") {
+                            navController.navigate(
+                                AppScreens.SongsListScreen(
+                                    id = id,
+                                    type = type
+                                )
+                            )
                         }
                     }
                 )
-            }
-            item {
-                Spacer(modifier = Modifier.height(paddingValues.calculateBottomPadding()))
             }
         }
     }

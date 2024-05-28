@@ -66,7 +66,7 @@ fun HomeAlbumCardItem(
                 modifier = Modifier.fillMaxWidth()
                     .padding(top = 5.dp, start = 3.dp, end = 3.dp)
             )
-            if (data.subtitle != null) {
+            if (!data.subtitle.isNullOrEmpty()) {
                 Text(
                     text = data.subtitle.parse(),
                     fontSize = 12.sp,

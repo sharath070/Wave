@@ -11,7 +11,8 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.google.common.util.concurrent.ListenableFuture
-import com.sharath070.wave.player.notification.PlayerNotificationManager
+import com.sharath070.wave.domain.player.PlaybackController
+import com.sharath070.wave.player.notification.PlayerNotificationProvider
 import com.sharath070.wave.player.service.MediaSessionCallback
 import com.sharath070.wave.player.service.PlayerService
 import com.sharath070.wave.player.service.MusicPlaybackController
@@ -64,9 +65,8 @@ object MediaModule {
     @Provides
     @Singleton
     fun providesNotificationProvider(
-        @ApplicationContext context: Context,
-        exoPlayer: ExoPlayer
-    ): PlayerNotificationManager = PlayerNotificationManager(context, exoPlayer)
+        @ApplicationContext context: Context
+    ): PlayerNotificationProvider = PlayerNotificationProvider(context)
 
 
     @Provides
@@ -74,6 +74,6 @@ object MediaModule {
     fun providesServiceConnection(
         @ApplicationContext context: Context,
         mediaControllerFuture: ListenableFuture<MediaController>
-    ): MusicPlaybackController = MusicPlaybackController(context, mediaControllerFuture)
+    ): PlaybackController = MusicPlaybackController(context, mediaControllerFuture)
 
 }

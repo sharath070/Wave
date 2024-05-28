@@ -9,8 +9,3 @@ data class HomeUiStates(
     val error: String? = null
 )
 
-sealed class HomeUiEvents {
-    data class GetAlbumSongs(val id: String): HomeUiEvents()
-    data class GetPlaylistSongs(val id: String): HomeUiEvents()
-}
-

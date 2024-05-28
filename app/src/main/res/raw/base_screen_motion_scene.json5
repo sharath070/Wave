@@ -1,0 +1,66 @@
+{
+  ConstraintSets: {
+    start: {
+      content: {
+        width: 'spread',
+        height: 'spread',
+        top: ['parent', 'top', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        bottom: ['mini_player', 'top', 0],
+      },
+      mini_player: {
+        top: ['content', 'bottom', 0],
+        bottom: ['bottom_bar', 'top', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0]
+      },
+      full_player: {
+        width: 'spread',
+        height: 0,
+        top: ['mini_player', 'bottom', 0],
+        bottom: ['bottom_bar', 'top', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        alpha: 0.65
+      },
+      bottom_bar: {
+        top: ['mini_player', 'bottom', 0],
+        bottom: ['parent', 'bottom', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0]
+      }
+    },
+    end: {
+      content: {
+        width: "spread",
+        height: "spread",
+        top: ["topBar", "bottom"],
+        start: ["parent", "start"],
+        end: ["parent", "end"],
+        bottom: ["miniPlayer", "top"],
+        alpha: 0.65
+      },
+      mini_player: {
+        top: ['content', 'top', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        alpha: 0
+      },
+      full_player: {
+        height: 'spread',
+        width: 'spread',
+        top: ['parent', 'top', 0],
+        bottom: ['parent', 'bottom', 0],
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        alpha: 1
+      },
+      bottom_bar: {
+        top: ["parent", "bottom"],
+        start: ["parent", "start"],
+        end: ["parent", "end"]
+      }
+    }
+  }
+}

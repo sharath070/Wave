@@ -1,7 +1,9 @@
 package com.sharath070.wave.di
 
-import com.sharath070.wave.data.repository.HomeScreenRepositoryImpl
-import com.sharath070.wave.domain.repository.HomeScreenRepository
+import com.sharath070.wave.data.repository.HomeRepositoryImpl
+import com.sharath070.wave.data.repository.SearchRepositoryImpl
+import com.sharath070.wave.domain.repository.HomeRepository
+import com.sharath070.wave.domain.repository.SearchRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,7 +17,13 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindHomeRepository(
-        repo: HomeScreenRepositoryImpl
-    ): HomeScreenRepository
+        repo: HomeRepositoryImpl
+    ): HomeRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindSearchRepository(
+        repo: SearchRepositoryImpl
+    ): SearchRepository
 
 }

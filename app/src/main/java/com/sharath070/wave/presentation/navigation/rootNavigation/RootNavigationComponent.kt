@@ -7,15 +7,27 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.sharath070.wave.presentation.navigation.rootNavigation.navGraphs.baseNavGraph
+import com.sharath070.wave.presentation.common.baseScreen.BaseScreen
+import com.sharath070.wave.presentation.common.playerScreen.PlayerUiStates
+import com.sharath070.wave.presentation.common.playerScreen.PlayerViewModel
 
 @Composable
 fun RootNavigationComponent() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = RootNavGraphs.Base.route) {
-        this.baseNavGraph(navController)
+    NavHost(navController = navController, startDestination = RootScreens.BaseScreen.route) {
+
+        composable(route = RootScreens.BaseScreen.route) {
+            val playerViewModel: PlayerViewModel = hiltViewModel()
+            val playerUiStates = playerViewModel.playerUiStates
+            BaseScreen(
+                playerUiStates = playerUiStates,
+                playerUiEvents = playerViewModel::playerEvents
+            )
+        }
+
     }
 }
 

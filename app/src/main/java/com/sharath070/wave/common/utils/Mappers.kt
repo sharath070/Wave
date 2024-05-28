@@ -1,9 +1,9 @@
 package com.sharath070.wave.common.utils
 
-import com.sharath070.wave.domain.models.musicApiSongListings.MusicApiSongDetails
+import com.sharath070.wave.domain.models.songListings.SongDetails
 import com.sharath070.wave.domain.models.player.Music
 
-fun MusicApiSongDetails.toMusic(): Music {
+fun SongDetails.toMusic(): Music {
     return Music(
         id = id,
         title = title,

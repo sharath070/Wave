@@ -1,9 +1,8 @@
 package com.sharath070.wave.domain.useCase.homePageUseCase
 
-import android.util.Log
 import com.sharath070.wave.common.Resource
 import com.sharath070.wave.domain.models.home.GenericHomeModel
-import com.sharath070.wave.domain.repository.HomeScreenRepository
+import com.sharath070.wave.domain.repository.HomeRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -11,7 +10,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class GetHomePageData @Inject constructor(
-    private val homeRepo: HomeScreenRepository
+    private val homeRepo: HomeRepository
 ) {
 
     operator fun invoke(languages: String): Flow<Resource<Map<String, List<GenericHomeModel>>>> =

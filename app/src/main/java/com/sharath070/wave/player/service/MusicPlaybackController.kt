@@ -26,11 +26,11 @@ class MusicPlaybackController @Inject constructor(
 
     override var mediaControllerCallback: (
         (playerState: PlayerState,
-        currentMusic: Int?,
-        currentPosition: Long,
-        totalDuration: Long,
-        isShuffleEnabled: Boolean,
-        repeatModeState: RepeatModeState) -> Unit
+         currentMusicIndex: Int?,
+         currentPosition: Long,
+         totalDuration: Long,
+         isShuffleEnabled: Boolean,
+         repeatModeState: RepeatModeState) -> Unit
     )? = null
 
 
@@ -64,14 +64,6 @@ class MusicPlaybackController @Inject constructor(
             seekToDefaultPosition(songIndex)
             playWhenReady = true
             prepare()
-        }
-    }
-
-    fun playAddingItem(music: Music) {
-        mediaController?.run {
-            addMediaItem(music.toMediaItem())
-            prepare()
-            playWhenReady = true
         }
     }
 
@@ -129,7 +121,7 @@ class MusicPlaybackController @Inject constructor(
     // Helper functions
     private fun Int.toPlayerState(isPlaying: Boolean) =
         when (this) {
-            Player.STATE_IDLE -> PlayerState.STOPPED
+            Player.STATE_IDLE -> PlayerState.IDLE
             Player.STATE_ENDED -> PlayerState.STOPPED
             Player.STATE_BUFFERING -> PlayerState.BUFFERING
             else -> if (isPlaying) PlayerState.PLAYING else PlayerState.PAUSED
